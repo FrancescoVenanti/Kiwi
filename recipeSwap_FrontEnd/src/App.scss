@@ -1,0 +1,388 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+$bgDark: #373a36;
+$bgLight: #eeeeee;
+$highlight: #ee4018;
+$sageGreen: #8ab24e;
+$warmBeige: #d5b69e;
+$bgWhite: #ffffff;
+$dark-bgDark: #eeeeee; // For dark mode, invert the light mode colors
+$dark-bgLight: #373a36;
+
+/* :root {
+	--bgDark: #373a36;
+	--bgLight: #eeeeee;
+	// Add your other light theme properties here...
+}
+
+// Use a separate selector to define dark theme overrides
+[data-theme="dark"] {
+	--bgDark: #eeeeee; // Dark theme overrides
+	--bgLight: #373a36;
+	// Add your other dark theme overrides here...
+} */
+
+:root {
+	--bgDark: #373a36;
+	--bgLight: #eeeeee;
+	--highlight: #ee4018;
+	--sageGreen: #8ab24e;
+	--warmBeige: #d5b69e;
+	--bgWhite: #ffffff;
+}
+
+[data-theme="dark"] {
+	--bgDark: #eeeeee; /* Originally the light background, now used for dark text */
+	--bgLight: #373a36; /* Originally the dark background, now used for dark theme background */
+	--highlight: #ee4018; /* No change, as it's a color that might not need inverting */
+	--sageGreen: #8ab24e; /* Consider adjusting if needed for better visibility in dark mode */
+	--warmBeige: #d5b69e; /* Consider adjusting if needed for better visibility in dark mode */
+	--bgWhite: #232529; /* A darker color for what was originally a light background */
+}
+
+// Removing overflow: hidden from global styles to allow for scrolling.
+body,
+html {
+	background-color: var(--bgLight);
+	color: var(--bgDark);
+	// other themed properties
+	box-sizing: border-box;
+	font-family: "Nunito", sans-serif;
+	overflow: hidden;
+	transition: color 0.4s, background-color 0.4s;
+}
+input,
+textarea {
+	font-family: "Nunito", sans-serif;
+	background-color: var(--bgWhite) !important;
+	color: var(--bgDark) !important;
+	border: 1px solid var(--bgLight) !important;
+}
+input::placeholder,
+textarea::placeholder {
+	color: var(--bgDark) !important;
+}
+.App {
+	width: 100vw;
+	height: 100vh; // Keeping the app container full viewport height.
+}
+//scrollbar
+::-webkit-scrollbar {
+	width: 2px;
+}
+::-webkit-scrollbar-track {
+	background: var(--bgLight);
+}
+::-webkit-scrollbar-thumb {
+	background: var(--sageGreen);
+}
+
+.contentContainer,
+// to make the side and main scrollable
+.divNoBordi > .row > .col-4 {
+	overflow-y: auto; // Enabling vertical scrolling for these containers.
+	max-height: 100vh; // Ensuring they do not exceed the viewport height.
+	margin-block: 0.5rem;
+	padding: 1rem;
+}
+.mh-30 {
+	max-height: 30%;
+}
+.dark {
+	background-color: var(--bgDark);
+	color: var(--bgLight);
+}
+.light {
+	background-color: var(--bgLight);
+	color: var(--bgDark);
+}
+.White {
+	background-color: var(--bgWhite);
+	color: var(--bgDark);
+}
+.text-green {
+	color: var(--sageGreen);
+}
+.text-bgdark {
+	color: var(--bgDark);
+}
+.bg-green {
+	background-color: var(--sageGreen);
+}
+.text-highlight {
+	color: var(--highlight);
+}
+.text-beige {
+	color: var(--warmBeige);
+}
+.divNoBordi {
+	width: 100vw;
+	height: 100vh;
+}
+.vertical-layout {
+	flex-direction: column;
+}
+.z-index-99 {
+	z-index: -1;
+}
+.sidebar {
+	z-index: 1000;
+	transition: width 0.6s;
+	text-wrap: nowrap;
+	overflow-x: hidden;
+	border: 2px solid var(--bgLight);
+
+	a {
+		color: var(--bgDark);
+		text-decoration: none;
+		transition: all 1s;
+		transition: color 0.3s;
+		.iconSide {
+			color: inherit;
+		}
+	}
+	a:hover {
+		background-color: var(--bgLight);
+		color: var(--sageGreen);
+		transition: all 0.3s;
+		border-radius: 0.5rem 0 0 0.5rem;
+	}
+	.sideProfile {
+		background-color: var(--bgDark);
+		color: var(--bgWhite);
+		margin-inline-end: -0.5rem;
+		border: none;
+		transition: all 0.3s;
+		border-radius: 0.5rem 0 0 0.5rem;
+		overflow: hidden;
+		.imgSmall {
+			width: 50px;
+			height: 50px;
+			transition: all 0.3s;
+			background-size: contain;
+		}
+		.imgHuge {
+			width: 50px;
+			height: 50px;
+			transform: scale(2);
+			transition: all 0.3s;
+			&:hover {
+				transition: all 0.3s;
+			}
+		}
+	}
+	.sideProfile:hover {
+		background-color: var(--bgLight);
+		color: var(--sageGreen);
+		transform: scale(1.01);
+		transition: all 0.3s;
+	}
+}
+#logoKiwi {
+	margin-inline-start: -4px !important;
+}
+.sideOpen {
+	width: 300px;
+}
+.sideClose {
+	width: 80px;
+}
+.cursor-pointer {
+	cursor: pointer;
+}
+@media (max-width: 768px) {
+	.sideOpen {
+		width: 100vw; /* Set width to 100% of the viewport width on mobile */
+	}
+	.sidebar {
+		margin: 0 !important;
+		height: 100vh; /* Set height to 100% of the viewport height on mobile */
+	}
+}
+
+.divAuth {
+	background-image: url("./assets/authBg.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	width: 100vw;
+	height: 100vh;
+	input {
+		color: $bgDark !important;
+		background-color: $bgWhite !important;
+		border: 1px solid $bgDark !important;
+		&::placeholder {
+			color: $bgDark !important;
+		}
+	}
+
+	.registerPos {
+		position: absolute;
+		top: 50%;
+		right: 10%;
+		transform: translate(-50%, -50%);
+		/* Ensures the element is not too close to the edges on smaller screens */
+		max-width: 90%;
+		box-sizing: border-box;
+	}
+
+	/* Media query for mobile devices */
+	@media (max-width: 768px) {
+		.registerPos {
+			top: auto;
+			right: auto;
+			bottom: 10%; /* or another value that suits the mobile layout */
+			left: 10%; /* or another value that suits the mobile layout */
+			transform: translate(0, 0);
+			width: 80%; /* Set a specific width for mobile */
+			/* Optional: you can center it horizontally */
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}
+.contentContainer {
+	max-height: 100vh;
+	margin-block: 0.5rem;
+	padding: 1rem;
+}
+@media (min-width: 992px) {
+	.recipeContainer {
+		height: 200px;
+	}
+}
+.no-line-break {
+	white-space: nowrap; /* Prevents the text from wrapping to a new line */
+	overflow: hidden; /* Ensures the overflow text is hidden */
+	text-overflow: ellipsis; /* Adds an ellipsis to signify there's more text */
+}
+
+.recipeDescription {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	line-clamp: 3;
+	max-height: 4.5rem; /* Adjust based on your font size and line-height */
+}
+
+.dishImage {
+	max-width: 200px;
+	max-height: 200px;
+	aspect-ratio: 1/1;
+	object-fit: cover;
+}
+.btn-outline-green {
+	background-color: var(--bgWhite);
+	color: var(--sageGreen);
+	border: 1px solid var(--sageGreen);
+	transition: all 0.3s;
+	&:hover {
+		background-color: var(--sageGreen);
+		color: var(--bgWhite);
+		transition: all 0.3s;
+	}
+}
+.btn-outline-bgdark {
+	background-color: var(--bgWhite);
+	color: var(--bgDark);
+	border: 1px solid var(--bgDark);
+	transition: all 0.3s;
+	&:hover {
+		background-color: var(--bgDark);
+		color: var(--bgWhite);
+		transition: all 0.3s;
+	}
+}
+.btn-outline-highline {
+	background-color: var(--bgWhite);
+	color: var(--highlight);
+	border: 1px solid var(--highlight);
+	transition: all 0.3s;
+	&:hover {
+		background-color: var(--highlight);
+		color: var(--bgWhite);
+		transition: all 0.3s;
+	}
+}
+.btn-bland {
+	background-color: var(--warmBeige);
+	color: var(--bgWhite);
+	border: 1px solid var(--bgWhite);
+	transition: all 0.3s;
+	&:hover {
+		background-color: var(--bgWhite);
+		color: var(--warmBeige);
+		transition: all 0.3s;
+		border: 1px solid var(--warmBeige);
+	}
+}
+.mostLikedRecipes {
+	margin-block-start: -25px !important;
+}
+.num-award {
+	position: absolute;
+	top: -20px;
+	right: -20px;
+	font-size: 2.5rem;
+	z-index: 10;
+	transform: rotate(10deg); /* Specify the rotation degree if needed, 0deg if no rotation */
+	width: 60px; /* Fixed width */
+	height: 60px; /* Fixed height */
+	background-color: var(--sageGreen);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%; /* Makes the badge circular */
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Adds a shadow to the text for better readability */
+}
+.num-award-animation {
+	animation: popIn 0.8s ease-out forwards;
+}
+@keyframes popIn {
+	0% {
+		transform: scale(1) rotate(0deg);
+		opacity: 0;
+	}
+	50% {
+		transform: scale(1.2) rotate(-10deg);
+		opacity: 1;
+	}
+	70% {
+		transform: scale(0.9) rotate(10deg);
+	}
+	100% {
+		transform: scale(1) rotate(-10deg);
+		opacity: 1;
+	}
+}
+pre {
+	white-space: pre-wrap; /* Allows text to wrap */
+	word-wrap: break-word; /* Ensures that words do not overflow the container */
+	font-family: "Nunito", sans-serif; /* Optional: Sets font family */
+}
+.btn-no-caret::after {
+	display: none !important;
+}
+.comments {
+	width: 100%;
+}
+@keyframes pop {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.2); /* Adjust scale value to control the "pop" effect size */
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.heart-pop {
+	animation: pop 0.4s ease; /* Adjust timing to make the animation faster or slower */
+}
+.scrollable {
+	overflow-y: auto;
+	max-height: 90vh;
+}
