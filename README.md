@@ -14,4 +14,4 @@ Backend: C# ASP.NET Core Web API.
 Database: Microsoft SQL.
 Chatbot: Node.js e OpenAI.
 Questo progetto è una piattaforma ideale per gli appassionati di cucina per esplorare, condividere e discutere ricette.
-[Kiwi](https://www.francescovenanti.com/assets/kwi-BfnvxO04.png)
+[Kiwi](./kwi.jpg)
